@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # author allenm < http://blog.allenm.me >
+# email github@allenm.me
 # date 2012-5-23
 #
 
