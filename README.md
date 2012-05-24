@@ -11,8 +11,9 @@ sync-hosts 介绍：
 3.  server 端依赖 tornado
 4.  解决好依赖后，运行 server.py ， 在 client 上，配置 config.json 修改 server 地址和端口，server 端口默认为 8888，运行 client 的 main.py
 5.  看到 main.py 打印出 open ，表示连接 server 成功
-6.  用浏览器访问 server, 例如 localhost:8888 然后在 web 界面上填上 hosts ，点击更新。
+6.  用浏览器访问 server, 例如 localhost:8888 然后在 web 界面上填上 hosts ，点击更新按钮。
 
 注意：
 -------------------
 此工具不会改动 client 端已有的 hosts 配置，只会在后面追加，和抹掉上一次由此工具生成的配置。
+如果你在 Mac / *nix 系统中使用 client 端，可能会抛没有权限写 hosts 的异常，请使用有权限写 hosts 的账号启动 main.py 
