@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>sync your hosts</title>
+        {% for css in cssList %}
+            <link rel="stylesheet" href="{{css}}" />
+        {% end %}
+    </head>
+    <body>
+        <div class="header"></div>
+        <div class="content">
+            <div class="form-wrapper">
+                <form action="/update-host" id="update-form" method="post">
+                    <textarea name="hosts" class="host-text" placeholder="put your hosts here"></textarea>
+                    <div class="status clearfix">
+                        <div class="toast" id="toast"></div>
+                        <button type="submit" class="submit-btn">更新</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% for js in jsList %}
+            <script src="{{js}}"></script>
+        {% end %}
+    </body>
+</html>

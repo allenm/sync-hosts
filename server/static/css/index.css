@@ -1,0 +1,33 @@
+/**
+ * author allenm < http://blog.allenm.me >
+ * date 2012-5-23
+ * sync your hosts index css
+ */
+
+.content {
+    width:500px;
+    margin:20px auto 0;
+}
+.content .host-text {
+    width:500px;
+    height:300px;
+    overflow:auto;
+    padding:8px;
+}
+.content .submit-btn {
+    font-size:14px;
+    padding:4px 8px;
+    float:right;
+}
+.content .toast {
+    float:left;
+    font-size:14px;
+    line-height:20px;
+    display:none;
+}
+.content .toast .normal {
+    color:#6bd170;
+}
+.content .toast .warning {
+    color:#e33b33;
+}
