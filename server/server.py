@@ -46,16 +46,6 @@ class updateHost( tornado.web.RequestHandler ):
         result = {"success":True }
         self.write( json.dumps( result ) )
 
-class test( tornado.web.RequestHandler ):
-
-    def get( self ):
-        head = r"""<!DOCTYPE html><html><head><title>test</title></head><body><h1>test test</h1>"""
-        self.write( head )
-        self.flush()
-        time.sleep(3)
-        self.write("<p>content</p></body></html>")
-        self.finish()
-
 class hostWSHandler( tornado.websocket.WebSocketHandler ):
     def open( self ):
         print "Websocket opened"
@@ -76,7 +66,6 @@ application = tornado.web.Application([
         (r"/", mainHandler),
         (r"/host", hostWSHandler ),
         (r"/update-host", updateHost ),
-        (r"/test", test),
     ],debug=True, cookie_secret="61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=",
     template_path = abspath+os.sep+'tmpl',
     static_path = abspath+ os.sep + 'static')
