@@ -6,6 +6,7 @@
 #
 
 import os
+import sys
 import tornado.ioloop
 import tornado.web
 import tornado.websocket
@@ -15,7 +16,11 @@ import time
 
 IOLoop = None
 abspath = os.path.dirname(__file__)
+sys.path.append( abspath + os.sep +"libs" )
 os.chdir( abspath )
+
+import models 
+
 clientList = []
 
 class mainHandler( tornado.web.RequestHandler ):
@@ -27,7 +32,11 @@ class mainHandler( tornado.web.RequestHandler ):
         cssList.append(self.static_url( 'css/index.css' ))
         jsList.append("http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js")
         jsList.append( self.static_url( 'js/index.js' ) )
-        self.write(loader.load('index.html').generate( cssList = cssList, jsList = jsList ))
+
+        hstore = models.HostsStore()
+        hostsList = hstore.getWorkSpace()
+
+        self.write(loader.load('index.html').generate( cssList = cssList, jsList = jsList, hostsList = hostsList ))
 
 
 class updateHost( tornado.web.RequestHandler ):
@@ -41,6 +50,10 @@ class updateHost( tornado.web.RequestHandler ):
         if host is None:
             return
         hostList = host.split("\n")
+        workspace = [ {"item": x} for x in hostList ]
+        hstore = models.HostsStore()
+        hstore.updateWorkSpace( workspace )
+
         for c in clientList:
             c.sendHost( hostList )
 

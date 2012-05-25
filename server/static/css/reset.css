@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/* ·ÀÖ¹ÓÃ»§×Ô¶¨Òå±³¾°ÑÕÉ«¶ÔÍøÒ³µÄÓ°Ïì£¬Ìí¼ÓÈÃÓÃ»§¿ÉÒÔ×Ô¶¨Òå×ÖÌå */
+/* é˜²æ­¢ç”¨æˆ·è‡ªå®šä¹‰èƒŒæ™¯é¢œè‰²å¯¹ç½‘é¡µçš„å½±å“ï¼Œæ·»åŠ è®©ç”¨æˆ·å¯ä»¥è‡ªå®šä¹‰å­—ä½“ */
 html {
 	color: #333;
 	background: #fff;
@@ -8,25 +8,25 @@ html {
 	-ms-text-size-adjust: 100%;
 }
 
-/* ÄÚÍâ±ß¾àÍ¨³£ÈÃ¸÷¸öä¯ÀÀÆ÷ÑùÊ½µÄ±íÏÖÎ»ÖÃ²»Í¬ */
+/* å†…å¤–è¾¹è·é€šå¸¸è®©å„ä¸ªæµè§ˆå™¨æ ·å¼çš„è¡¨ç°ä½ç½®ä¸åŒ */
 body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, group, menu, nav, section {
 	margin: 0;
 	padding: 0;
 }
 
-/* ÖØÉè HTML5 ±êÇ©, IE ĞèÒªÔÚ js ÖĞ createElement(TAG) */
+/* é‡è®¾ HTML5 æ ‡ç­¾, IE éœ€è¦åœ¨ js ä¸­ createElement(TAG) */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 
-/* HTML5 Ã½ÌåÎÄ¼ş¸ú img ±£³ÖÒ»ÖÂ */
+/* HTML5 åª’ä½“æ–‡ä»¶è·Ÿ img ä¿æŒä¸€è‡´ */
 audio, canvas, video {
 	display: inline-block;
 	*display: inline;
 	*zoom: 1;
 }
 
-/* Òª×¢Òâ±íµ¥ÔªËØ²¢²»¼Ì³Ğ¸¸¼¶ font µÄÎÊÌâ */
+/* è¦æ³¨æ„è¡¨å•å…ƒç´ å¹¶ä¸ç»§æ‰¿çˆ¶çº§ font çš„é—®é¢˜ */
 body, button, input, select, textarea {
 	font: 14px/1.5 "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
 }
@@ -35,28 +35,28 @@ input, select, textarea {
 	font-size: 1em;
 }
 
-/* È¥µô¸÷Table  cell µÄ±ß¾à²¢ÈÃÆä±ßÖØºÏ */
+/* å»æ‰å„Table  cell çš„è¾¹è·å¹¶è®©å…¶è¾¹é‡åˆ */
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
 
-/* IE bug fixed: th ²»¼Ì³Ğ text-align*/
+/* IE bug fixed: th ä¸ç»§æ‰¿ text-align*/
 th {
 	text-align: inherit;
 }
 
-/* È¥³ıÄ¬ÈÏ±ß¿ò */
+/* å»é™¤é»˜è®¤è¾¹æ¡† */
 fieldset, img {
 	border: 0;
 }
 
-/* ie6 7 8(q) bug ÏÔÊ¾ÎªĞĞÄÚ±íÏÖ */
+/* ie6 7 8(q) bug æ˜¾ç¤ºä¸ºè¡Œå†…è¡¨ç° */
 iframe {
 	display: block;
 }
 
-/* ¿é/¶ÎÂäÒıÓÃ */
+/* å—/æ®µè½å¼•ç”¨ */
 blockquote {
 	margin: 1em 4em 1em 2em;
 	padding: 0.6em 1em;
@@ -68,18 +68,18 @@ blockquote blockquote {
 	border-left: 0.4em solid #ddd;
 }
 
-/* Firefox ÒÔÍâ£¬ÔªËØÃ»ÓĞÏÂ»®Ïß£¬ĞèÌí¼Ó */
+/* Firefox ä»¥å¤–ï¼Œå…ƒç´ æ²¡æœ‰ä¸‹åˆ’çº¿ï¼Œéœ€æ·»åŠ  */
 acronym, abbr {
 	border-bottom: 1px dotted;
 	font-variant: normal;
 }
 
-/* Ìí¼ÓÊó±êÎÊºÅ£¬½øÒ»²½È·±£Ó¦ÓÃµÄÓïÒåÊÇÕıÈ·µÄ£¨ÒªÖªµÀ£¬½»»¥ËûÃÇÒ²ÓĞ½àñ±£¬Èç¹ûÄã²»È¥µô£¬ÄÇµÃ¶à»¨µã¿ÚÉà£© */
+/* æ·»åŠ é¼ æ ‡é—®å·ï¼Œè¿›ä¸€æ­¥ç¡®ä¿åº”ç”¨çš„è¯­ä¹‰æ˜¯æ­£ç¡®çš„ï¼ˆè¦çŸ¥é“ï¼Œäº¤äº’ä»–ä»¬ä¹Ÿæœ‰æ´ç™–ï¼Œå¦‚æœä½ ä¸å»æ‰ï¼Œé‚£å¾—å¤šèŠ±ç‚¹å£èˆŒï¼‰ */
 abbr {
 	cursor: help;
 }
 
-/* Ò»ÖÂµÄ del ÑùÊ½ */
+/* ä¸€è‡´çš„ del æ ·å¼ */
 del {
 	text-decoration: line-through;
 }
@@ -89,12 +89,12 @@ address, caption, cite, code, den, em, th, var {
 	font-weight: 500;
 }
 
-/* È¥µôÁĞ±íÇ°µÄ±êÊ¶, li »á¼Ì³Ğ£¬´ó²¿·ÖÍøÕ¾Í¨³£ÓÃÁĞ±íÀ´ºÜ¶àÄÚÈİ£¬ËùÒÔÓ¦¸Ãµ±È¥ */
+/* å»æ‰åˆ—è¡¨å‰çš„æ ‡è¯†, li ä¼šç»§æ‰¿ï¼Œå¤§éƒ¨åˆ†ç½‘ç«™é€šå¸¸ç”¨åˆ—è¡¨æ¥å¾ˆå¤šå†…å®¹ï¼Œæ‰€ä»¥åº”è¯¥å½“å» */
 ul, ol {
 	list-style: none;
 }
 
-/* ¶ÔÆëÊÇÅÅ°æ×îÖØÒªµÄÒòËØ, ±ğÈÃÊ²Ã´¶¼¾ÓÖĞ */
+/* å¯¹é½æ˜¯æ’ç‰ˆæœ€é‡è¦çš„å› ç´ , åˆ«è®©ä»€ä¹ˆéƒ½å±…ä¸­ */
 caption, th {
 	text-align: left;
 }
@@ -103,7 +103,7 @@ q:before, q:after {
 	content: '';
 }
 
-/* Í³Ò»ÉÏ±êºÍÏÂ±ê */
+/* ç»Ÿä¸€ä¸Šæ ‡å’Œä¸‹æ ‡ */
 sub, sup {
 	font-size: 75%;
 	line-height: 0;
@@ -117,32 +117,32 @@ sub {
 	bottom: -0.25em;
 }
 
-/* ÈÃÁ´½ÓÔÚ hover ×´Ì¬ÏÂÏÔÊ¾ÏÂ»®Ïß */
+/* è®©é“¾æ¥åœ¨ hover çŠ¶æ€ä¸‹æ˜¾ç¤ºä¸‹åˆ’çº¿ */
 a:hover {
 	text-decoration: underline;
 }
 
-/* Ä¬ÈÏ²»ÏÔÊ¾ÏÂ»®Ïß£¬±£³ÖÒ³Ãæ¼ò½à */
+/* é»˜è®¤ä¸æ˜¾ç¤ºä¸‹åˆ’çº¿ï¼Œä¿æŒé¡µé¢ç®€æ´ */
 ins, a {
 	text-decoration: none;
 }
 
-/* ×¨ÃûºÅ£ºËäÈ» u ÒÑ¾­ÖØ»Ø html5 Draft£¬µ«ÔÚËùÓĞä¯ÀÀÆ÷ÖĞ¶¼ÊÇ¿ÉÒÔÊ¹ÓÃµÄ£¬
- * Òª×öµ½¸üºÃ£¬Ïòºó¼æÈİµÄ»°£¬Ìí¼Ó class="typo-u" À´ÏÔÊ¾×¨ÃûºÅ
- * ¹ØÓÚ <u> ±êÇ©£ºhttp://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#the-u-element
- * ±»·ÅÆúµÄÊÇ 4£¬Ö®Ç°Ò»Ö±¸ã´í http://www.w3.org/TR/html401/appendix/changes.html#idx-deprecated
- * Ò»Æª¹ØÓÚ <u> ±êÇ©µÄºÜºÃÎÄÕÂ£ºhttp://html5doctor.com/u-element/ 
+/* ä¸“åå·ï¼šè™½ç„¶ u å·²ç»é‡å› html5 Draftï¼Œä½†åœ¨æ‰€æœ‰æµè§ˆå™¨ä¸­éƒ½æ˜¯å¯ä»¥ä½¿ç”¨çš„ï¼Œ
+ * è¦åšåˆ°æ›´å¥½ï¼Œå‘åå…¼å®¹çš„è¯ï¼Œæ·»åŠ  class="typo-u" æ¥æ˜¾ç¤ºä¸“åå·
+ * å…³äº <u> æ ‡ç­¾ï¼šhttp://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#the-u-element
+ * è¢«æ”¾å¼ƒçš„æ˜¯ 4ï¼Œä¹‹å‰ä¸€ç›´æé”™ http://www.w3.org/TR/html401/appendix/changes.html#idx-deprecated
+ * ä¸€ç¯‡å…³äº <u> æ ‡ç­¾çš„å¾ˆå¥½æ–‡ç« ï¼šhttp://html5doctor.com/u-element/ 
  */
 u, .typo-u {
 	text-decoration: underline;
 }
 
-/* ±ê¼Ç£¬ÀàËÆÓÚÊÖĞ´µÄÓ«¹â±ÊµÄ×÷ÓÃ */
+/* æ ‡è®°ï¼Œç±»ä¼¼äºæ‰‹å†™çš„è§å…‰ç¬”çš„ä½œç”¨ */
 mark {
 	background: #fffdd1;
 }
 
-/* ´úÂëÆ¬¶Ï */
+/* ä»£ç ç‰‡æ–­ */
 pre, code {
 	font-family: "Courier New", Courier, "Hiragino Sans GB", monospace;
 }
@@ -153,13 +153,13 @@ pre {
 	padding: 10px;
 }
 
-/* µ×²¿Ó¡Ë¢Ìå¡¢°æ±¾µÈ±ê¼Ç */
+/* åº•éƒ¨å°åˆ·ä½“ã€ç‰ˆæœ¬ç­‰æ ‡è®° */
 small {
 	font-size: 12px;
 	color: #888;
 }
 
-/* ÇåÀí¸¡¶¯ */
+/* æ¸…ç†æµ®åŠ¨ */
 .clear {
 	clear: both;
 	display: block;
@@ -182,16 +182,16 @@ small {
 	zoom: 1
 }
 
-/* TODO: Ó¢ÎÄÅÅ°æ²»ÊÇºÜºÃ¿´ */
+/* TODO: è‹±æ–‡æ’ç‰ˆä¸æ˜¯å¾ˆå¥½çœ‹ */
 .typo{line-height:1.8;}
 
-/* ±£Ö¤¿é/¶ÎÂäÖ®¼äµÄ¿Õ°×¸ôĞĞ */
+/* ä¿è¯å—/æ®µè½ä¹‹é—´çš„ç©ºç™½éš”è¡Œ */
 .typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr, .typo table,
 .typo-p, .typo-pre, .typo-ul, .typo-ol, .typo-dl, .typo-form, .typo-hr, .typo-table {
 	margin: 0.6em 0 1em;
 }
 
-/* ±êÌâÓ¦¸Ã¸üÌù½ôÄÚÈİ£¬²¢ÓëÆäËû¿éÇø·Ö£¬margin ÖµÒªÏàÓ¦×öÓÅ»¯ */
+/* æ ‡é¢˜åº”è¯¥æ›´è´´ç´§å†…å®¹ï¼Œå¹¶ä¸å…¶ä»–å—åŒºåˆ†ï¼Œmargin å€¼è¦ç›¸åº”åšä¼˜åŒ– */
 .typo h1, .typo h2, .typo h3, .typo h4, .typo h5, .typo h6,
 .typo-h1, .typo-h2, .typo-h3, .typo-h4, .typo-5, .typo-h6 {
 	margin: 1.4em 0 0.8em;
@@ -213,7 +213,7 @@ small {
 	font-size: 1em;
 }
 
-/* ÔÚÎÄÕÂÖĞ£¬Ó¦¸Ã»¹Ô­ ul ºÍ ol µÄÑùÊ½ */
+/* åœ¨æ–‡ç« ä¸­ï¼Œåº”è¯¥è¿˜åŸ ul å’Œ ol çš„æ ·å¼ */
 .typo ul, .typo-ul {
 	margin-left: 1.3em;
 	list-style: disc;
@@ -231,7 +231,7 @@ small {
 	list-style: circle;
 }
 
-/* Í¬ ul/ol£¬ÔÚÎÄÕÂÖĞÓ¦ÓÃ table »ù±¾¸ñÊ½ */
+/* åŒ ul/olï¼Œåœ¨æ–‡ç« ä¸­åº”ç”¨ table åŸºæœ¬æ ¼å¼ */
 .typo table th, .typo table td, .typo-table th, .typo-table td {
 	border: 1px solid #ddd;
 	padding: 5px 10px;
@@ -243,12 +243,12 @@ small {
 	background: #f1f1f1;
 }
 
-/* TODO: ¹©×ÅÖØºÅÊ¹ÓÃ */
+/* TODO: ä¾›ç€é‡å·ä½¿ç”¨ */
 .typo-em, .typo em {
 	font-weight: 700;
 }
 
-/* TODO: ¹©Ê××ÖÏÂ³ÁÊ¹ÓÃ */
+/* TODO: ä¾›é¦–å­—ä¸‹æ²‰ä½¿ç”¨ */
 .typo-first{
 
 }

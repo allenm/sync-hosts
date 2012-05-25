@@ -11,7 +11,7 @@
 
         init:function ( ) {
             this._initUpdate();
-            this._getLastHost();
+            /*this._getLastHost();*/
         },
         _initUpdate:function ( ) {
             var self = this;

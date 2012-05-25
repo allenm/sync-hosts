@@ -12,7 +12,10 @@
         <div class="content">
             <div class="form-wrapper">
                 <form action="/update-host" id="update-form" method="post">
-                    <textarea name="hosts" class="host-text" placeholder="put your hosts here"></textarea>
+                    <textarea name="hosts" class="host-text" placeholder="put your hosts here">
+                        {% for host in hostsList %}{{host[1]}}
+                        {% end %}
+                    </textarea>
                     <div class="status clearfix">
                         <div class="toast" id="toast"></div>
                         <button type="submit" class="submit-btn">更新</button>
