@@ -10,17 +10,25 @@
     <body>
         <div class="header"></div>
         <div class="content">
-            <div class="form-wrapper">
-                <form action="/update-host" id="update-form" method="post">
-                    <textarea name="hosts" class="host-text" placeholder="put your hosts here">
-                        {% for host in hostsList %}{{host[1]}}
+            <div class="groups">
+            </div>
+            <div class="workspace">
+                <div class="edit-area" id="edit-area">
+                    <div class="stored">
+                        {% for host in hostsList %}
+                            {% if host[1].startswith('#') %}
+                                <div class="unactive-item item clearfix"><span class="data">{{host[1]}}</span><a href="#" class="delete">&#x00d7</a></div>
+                            {% else %}
+                                <div class="item clearfix"><span class="data">{{host[1]}}</span><a href="#" class="delete">&#x00d7</a></div>
+                            {% end %}
                         {% end %}
-                    </textarea>
-                    <div class="status clearfix">
-                        <div class="toast" id="toast"></div>
-                        <button type="submit" class="submit-btn">更新</button>
                     </div>
-                </form>
+                    <textarea type="text" id="host-input" class="host-input"></textarea>
+                </div>
+                <div class="status clearfix">
+                    <div class="toast" id="toast"></div>
+                    <button id="submit-btn" type="submit" class="submit-btn">更新</button>
+                </div>
             </div>
         </div>
         {% for js in jsList %}
