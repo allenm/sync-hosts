@@ -4,9 +4,25 @@
  * sync your hosts index css
  */
 
+.content {
+    width:930px;
+    margin:0 auto;
+}
+.groups {
+    width:400px;
+    min-height:400px;
+    float:left;
+    margin:20px 20px 0 0;
+}
 .workspace {
     width:510px;
-    margin:20px auto;
+    margin:20px 0;
+    float:left;
+}
+.workspace h2 {
+    color:#08283e;
+    margin-bottom:8px;
+    text-indent:8px;
 }
 .edit-area {
     width:500px;
@@ -33,6 +49,10 @@
 .edit-area .item .delete {
     float:right;
     color:#fff;
+    display:none;
+}
+.edit-area .item:hover .delete {
+    display:inline;
 }
 .edit-area .unactive-item {
     background-color:#c3c3c3;
@@ -48,8 +68,6 @@
     resize:none;
 }
 .workspace .submit-btn {
-    font-size:14px;
-    padding:4px 8px;
     float:right;
 }
 .workspace .toast {
@@ -65,3 +83,8 @@
     color:#e33b33;
 }
 
+.groups .add-group {
+    width:398px;
+    height:28px;
+    line-height:28px;
+}

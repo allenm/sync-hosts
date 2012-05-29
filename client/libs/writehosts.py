@@ -81,4 +81,4 @@ def writeHost( hosts ):
 
 if __name__ == "__main__":
     host = ["127.0.0.1 style.china.alibaba.com"]
-    writeHostCont( host )
+    writeHost( host )

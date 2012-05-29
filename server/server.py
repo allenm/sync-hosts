@@ -29,8 +29,10 @@ class mainHandler( tornado.web.RequestHandler ):
         cssList = []
         jsList = []
         cssList.append(self.static_url( 'css/reset.css' ))
+        cssList.append(self.static_url( 'css/bootstrap.css' ))
         cssList.append(self.static_url( 'css/index.css' ))
         jsList.append("http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js")
+        jsList.append( self.static_url( 'js/mod/host-editor.js' ) )
         jsList.append( self.static_url( 'js/index.js' ) )
 
         hstore = models.HostsStore()
@@ -47,15 +49,14 @@ class updateHost( tornado.web.RequestHandler ):
 
     def post(self):
         host = self.get_argument("host", default=None )
-        if host is None:
-            return
-        hostList = host.split("\n")
-        workspace = [ {"item": x} for x in hostList ]
-        hstore = models.HostsStore()
-        hstore.updateWorkSpace( workspace )
+        if host is not None:
+            hostList = host.split("\n")
+            workspace = [ {"item": x} for x in hostList ]
+            hstore = models.HostsStore()
+            hstore.updateWorkSpace( workspace )
 
-        for c in clientList:
-            c.sendHost( hostList )
+            for c in clientList:
+                c.sendHost( hostList )
 
         result = {"success":True }
         self.write( json.dumps( result ) )

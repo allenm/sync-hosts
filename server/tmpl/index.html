@@ -9,11 +9,18 @@
     </head>
     <body>
         <div class="header"></div>
-        <div class="content">
+        <div class="content clearfix">
             <div class="groups">
+                <h2>Group Manage: </h2>
+                <div class="group-wrap">
+                </div>
+                <div class="add-group">
+                    <a href="#" class="add-group-btn btn btn-small btn-primary">Add Group</a>
+                </div>
             </div>
             <div class="workspace">
-                <div class="edit-area" id="edit-area">
+                <h2>Workspace:</h2>
+                <div class="edit-area" id="working-edit-area">
                     <div class="stored">
                         {% for host in hostsList %}
                             {% if host[1].startswith('#') %}
@@ -23,11 +30,11 @@
                             {% end %}
                         {% end %}
                     </div>
-                    <textarea type="text" id="host-input" class="host-input"></textarea>
+                    <textarea type="text" class="host-input"></textarea>
                 </div>
                 <div class="status clearfix">
                     <div class="toast" id="toast"></div>
-                    <button id="submit-btn" type="submit" class="submit-btn">更新</button>
+                    <button id="submit-btn" type="submit" class="btn btn-large btn-primary submit-btn">Save &amp; Sync</button>
                 </div>
             </div>
         </div>
