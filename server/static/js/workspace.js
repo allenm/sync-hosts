@@ -41,6 +41,10 @@
             });
         },
 
+        addGroup:function ( groupId, groupName ) {
+            $('#working-edit-area').hostEditor('addStoredItem', '{{group:'+groupId+'|'+groupName+'}}');
+        },
+
         toast:function ( txt, className ) {
             var className = className || "normal";
             if( this.timer ){

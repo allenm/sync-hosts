@@ -21,19 +21,45 @@ class HostsStore :
 
     def updateWorkSpace( self, workspace ):
         u'''更新工作区'''
-        data = []
-        for x in workspace:
-            data.append(( x.get("groupid"), x.get("item"), x.get("status",1) ))
 
-        self.cursor.execute("DELETE FROM workspace WHERE 1=1")
-        self.cursor.executemany('INSERT INTO workspace VALUES( ?, ?,? )', data )
+        print workspace
+        self.cursor.execute('INSERT INTO workspace ( hosts ) VALUES( ? )', (workspace,) )
         self.conn.commit()
 
     def getWorkSpace( self ):
         u'''获取工作区内容'''
         
-        self.cursor.execute("SELECT * FROM workspace")
-        return self.cursor.fetchall()
+        self.cursor.execute("SELECT * FROM workspace ORDER BY id DESC LIMIT 1")
+        return self.cursor.fetchone()
+
+    def getActiveHosts( self ):
+        u''' 获取有效的 hosts '''
+        workspace = self.getWorkSpace()
+        activeHost = []
+        groupFlag = "{{group:"
+        if workspace :
+            hostList = workspace[1].split('\n')
+        else:
+            hostList = []
+
+        for x in hostList:
+            if x.startswith('#'):
+                continue
+            elif x.startswith( groupFlag ):
+                offset = x.find("|")
+                if offset is not -1:
+                    print x
+                    groupId = x[ len(groupFlag): offset ]
+                    activeHost += self.getGroupCont( groupId ).split('\n')
+                else:
+                    continue
+            else:
+                activeHost.append(x)
+
+        return activeHost
+
+
+
 
     def addGroup( self, groupName, hosts ):
         u'''添加分组'''
@@ -54,6 +80,15 @@ class HostsStore :
         u'''获取所有有效分组'''
         self.cursor.execute('''SELECT * FROM groups WHERE status=1''')
         return self.cursor.fetchall()
+
+    def getGroupCont( self, groupId ):
+        u"""获取分组hosts"""
+        self.cursor.execute("SELECT hosts FROM groups WHERE id=?",(groupId,))
+        result = self.cursor.fetchone()
+        if result:
+            return result[0]
+        else:
+            return ""
 
 
     def delGroup( self, groupId ):

@@ -18,13 +18,21 @@
             var actionRoute = {
                 fold:$.proxy( self._handleFold , self ),
                 delete:$.proxy( self._delGroup, self ),
-                edit:$.proxy( self._editGroup, self )
+                edit:$.proxy( self._editGroup, self ),
+                active:$.proxy( self._activeGroup, self )
             };
             $('#group-wrap').on('click','a.action',function ( ev ) {
                 ev.preventDefault();
                 var action = $(this).data('action');
                 actionRoute[action] && actionRoute[action]( this, ev );
             });
+        },
+
+        _activeGroup:function ( el, ev ) {
+            var $item = $(el).closest('div.group-item'),
+                groupId = $item.data('groupId'),
+                groupName = $item.find('a.group-name').text();
+            syncHost.workSpace.addGroup( groupId, groupName );
         },
 
         _editGroup:function ( el, ev ) {
@@ -165,7 +173,7 @@
     };
 
     syncHost.init( groups );
-    syncHost.workSpace = groups;
+    syncHost.groups = groups;
 
 
 })( jQuery );

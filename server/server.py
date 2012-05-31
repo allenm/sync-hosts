@@ -36,11 +36,15 @@ class mainHandler( tornado.web.RequestHandler ):
         jsList.append( self.static_url( 'js/mod/host-editor.js' ) )
         jsList.append( self.static_url( 'js/mod/mustache.js' ) )
         jsList.append( self.static_url( 'js/mod/modal.js' ) )
+        jsList.append( self.static_url( 'js/workspace.js' ) )
         jsList.append( self.static_url( 'js/group.js' ) )
-        jsList.append( self.static_url( 'js/index.js' ) )
 
         hstore = models.HostsStore()
-        hostsList = hstore.getWorkSpace()
+        workspace = hstore.getWorkSpace()
+        if workspace:
+            hostsList = workspace[1].split('\n')
+        else:
+            hostsList = []
 
         groups = hstore.getGroups()
 
@@ -56,13 +60,14 @@ class updateHost( tornado.web.RequestHandler ):
     def post(self):
         host = self.get_argument("host", default=None )
         if host is not None:
-            hostList = host.split("\n")
-            workspace = [ {"item": x} for x in hostList ]
+
             hstore = models.HostsStore()
-            hstore.updateWorkSpace( workspace )
+            hstore.updateWorkSpace( host )
+
+            activeHosts = hstore.getActiveHosts()
 
             for c in clientList:
-                c.sendHost( hostList )
+                c.sendHost( activeHosts )
 
         result = {"success":True }
         self.write( json.dumps( result ) )

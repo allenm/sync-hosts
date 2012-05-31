@@ -18,7 +18,7 @@ def createDB( clean ):
     c = conn.cursor()
     c.execute('''CREATE TABLE if not exists groups( id INTEGER PRIMARY KEY AUTOINCREMENT , name TEXT, hosts TEXT, status INTEGER DEFAULT 1 )''')
     #c.execute('''CREATE TABLE if not exists hosts( groupid INTEGER, item TEXT , status INTEGER DEFAULT 1 )''')
-    c.execute('''CREATE TABLE if not exists workspace( groupid INTEGER , item TEXT, status INTEGER DEFAULT 1)''')
+    c.execute('''CREATE TABLE if not exists workspace( id INTEGER PRIMARY KEY AUTOINCREMENT , hosts TEXT, status INTEGER DEFAULT 1)''')
     conn.commit()
     c.close()
     conn.close()

@@ -28,6 +28,10 @@
             return hosts;
         },
 
+        addStoredItem:function ( item ) {
+            hostEditor._addItems( this.find('.host-input'), [item] );
+        },
+
         _initInput:function ( node ) {
             var self = this;
             node.find('.host-input').on('keydown',function ( ev ) {
