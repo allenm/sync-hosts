@@ -16,6 +16,18 @@
             hostEditor._putTextStored( this.find('.host-input') );
         },
 
+        reset:function ( ) {
+            this.find('textarea').val('');
+            this.find('div.stored').html('');
+        },
+        getHosts:function ( ) {
+            var hosts = [];
+            this.find('span.data').each(function ( index, item ) {
+                hosts.push( $(this).text() );
+            });
+            return hosts;
+        },
+
         _initInput:function ( node ) {
             var self = this;
             node.find('.host-input').on('keydown',function ( ev ) {
@@ -137,7 +149,6 @@
           $.error( 'Method ' +  method + ' does not exist on jQuery.tooltip' );
         }   
 
-        return this;
     };
     
 })( jQuery );

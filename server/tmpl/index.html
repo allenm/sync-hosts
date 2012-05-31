@@ -12,10 +12,53 @@
         <div class="content clearfix">
             <div class="groups">
                 <h2>Group Manage: </h2>
-                <div class="group-wrap">
+                <div class="group-wrap" id="group-wrap">
+                    {% for group in groups %}
+                        <div class="group-item" data-group-id="{{group[0]}}">
+                            <div class="group-title clearfix">
+                                <h5><a href="#" class="group-name action" data-action="fold">{{group[1]}}</a></h5>
+                                <div class="op">
+                                    <a title="delete" href="#" class="action delete" data-action="delete"><i class="icon-trash"></i></a>
+                                    <a title="edit" href="#" class="action edit" data-action="edit"><i class="icon-edit"></i></a>
+                                    <a title="active" href="#" class="action active" data-action="active"><i class="icon-arrow-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="group-body">
+                                <ul>
+                                    {% for item in group[2].split("\n") %}
+                                    <li>{{item}}</li>
+                                    {% end %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% end %}
                 </div>
                 <div class="add-group">
-                    <a href="#" class="add-group-btn btn btn-small btn-primary">Add Group</a>
+                    <a href="#" id="add-group-btn" class="add-group-btn btn btn-small btn-primary">Add Group</a>
+                </div>
+                <div class="modal group-edit-modal" id="group-edit-modal">
+                    <form class="" action="/add-group" method="POST">
+                        <div class="modal-header">
+                            <button class="close" data-dismiss="modal">×</button>
+                            <h3>Edit Group</h3>
+                         </div>
+                         <div class="modal-body">
+                            <label>Group Name:</label>
+                            <input class="group-name" maxlength="20" type="text" name="group-name" required placeholder="group name" />
+                            <label>Hosts: </label>
+                            <div class="edit-area">
+                                <div class="stored">
+                                </div>
+                                <textarea type="text" class="host-input"></textarea>
+                            </div>
+                         </div>
+                         <div class="modal-footer">
+                            <div class="button-group fd-clr">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn cancel">Cancel</button>
+                            </div>
+                         </div>
+                    </form>
                 </div>
             </div>
             <div class="workspace">
@@ -41,5 +84,24 @@
         {% for js in jsList %}
             <script src="{{js}}"></script>
         {% end %}
+        <script id="group-item-tmpl" type="text/template">
+                        <div class="group-item" data-group-id="{{!groupId}}">
+                            <div class="group-title clearfix">
+                                <h5><a href="#" class="group-name action" data-action="fold">{{!groupName}}</a></h5>
+                                <div class="op">
+                                    <a title="delete" href="#" class="action delete" data-action="delete"><i class="icon-trash"></i></a>
+                                    <a title="edit" href="#" class="action edit" data-action="edit"><i class="icon-edit"></i></a>
+                                    <a title="active" href="#" class="action active" data-action="active"><i class="icon-arrow-right"></i></a>
+                                </div>
+                            </div>
+                            <div class="group-body">
+                                <ul>
+                                    {{!#hosts}}
+                                    <li>{{!.}}</li>
+                                    {{!/hosts}}
+                                </ul>
+                            </div>
+                        </div>
+        </script>
     </body>
 </html>

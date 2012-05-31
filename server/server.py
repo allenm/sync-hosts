@@ -32,13 +32,19 @@ class mainHandler( tornado.web.RequestHandler ):
         cssList.append(self.static_url( 'css/bootstrap.css' ))
         cssList.append(self.static_url( 'css/index.css' ))
         jsList.append("http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js")
+        jsList.append( self.static_url( 'js/global.js' ) )
         jsList.append( self.static_url( 'js/mod/host-editor.js' ) )
+        jsList.append( self.static_url( 'js/mod/mustache.js' ) )
+        jsList.append( self.static_url( 'js/mod/modal.js' ) )
+        jsList.append( self.static_url( 'js/group.js' ) )
         jsList.append( self.static_url( 'js/index.js' ) )
 
         hstore = models.HostsStore()
         hostsList = hstore.getWorkSpace()
 
-        self.write(loader.load('index.html').generate( cssList = cssList, jsList = jsList, hostsList = hostsList ))
+        groups = hstore.getGroups()
+
+        self.write(loader.load('index.html').generate( cssList = cssList, jsList = jsList, hostsList = hostsList, groups = groups ))
 
 
 class updateHost( tornado.web.RequestHandler ):
@@ -61,6 +67,46 @@ class updateHost( tornado.web.RequestHandler ):
         result = {"success":True }
         self.write( json.dumps( result ) )
 
+class editGroup( tornado.web.RequestHandler ):
+
+    def get(self):
+        result = { "success": False }
+        self.write( json.dumps( result ) )
+    
+    def post(self):
+        host = self.get_argument("host", default=None)
+        groupName = self.get_argument("groupName",default="")
+        groupId = self.get_argument("groupId", default = None )
+
+        hstore = models.HostsStore()
+
+        if groupId is None :
+            newGroupId = hstore.addGroup( groupName, host )
+        else:
+            newGroupId = groupId
+            hstore.updateGroup( groupId, groupName,  host )
+
+        result = {"success":True, "groupId":newGroupId }
+        self.write( json.dumps( result ) )
+
+class delGroup( tornado.web.RequestHandler ):
+    def get(self):
+        result = { "success": False }
+        self.write( json.dumps( result ) )
+
+    def post( self ):
+        groupId = self.get_argument("groupId", default = None )
+
+        if groupId is None:
+            result = {"success":False, "errMsg":"must supply group id"}
+            self.write( json.dumps( result ) )
+        else:
+            hstore = models.HostsStore()
+            hstore.delGroup( groupId )
+            result = { "success":True }
+            self.write( json.dumps( result ))
+
+
 class hostWSHandler( tornado.websocket.WebSocketHandler ):
     def open( self ):
         print "Websocket opened"
@@ -81,6 +127,8 @@ application = tornado.web.Application([
         (r"/", mainHandler),
         (r"/host", hostWSHandler ),
         (r"/update-host", updateHost ),
+        (r"/edit-group", editGroup ),
+        (r"/del-group", delGroup ),
     ],debug=True, cookie_secret="61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=",
     template_path = abspath+os.sep+'tmpl',
     static_path = abspath+ os.sep + 'static')

@@ -4,6 +4,13 @@
  * sync your hosts index css
  */
 
+h2 {
+    color:#333;
+    margin-bottom:8px;
+}
+.hide {
+    display:none;
+}
 .content {
     width:930px;
     margin:0 auto;
@@ -18,11 +25,6 @@
     width:510px;
     margin:20px 0;
     float:left;
-}
-.workspace h2 {
-    color:#08283e;
-    margin-bottom:8px;
-    text-indent:8px;
 }
 .edit-area {
     width:500px;
@@ -66,6 +68,7 @@
     outline:none;
     width:100%;
     resize:none;
+    box-shadow:none;
 }
 .workspace .submit-btn {
     float:right;
@@ -87,4 +90,63 @@
     width:398px;
     height:28px;
     line-height:28px;
+    margin:0 0 20px 0;
+}
+
+/*.add-group-form .group-name {*/
+/*width:390px;*/
+/*}*/
+/*.add-group-form .edit-area {*/
+/*width:390px;*/
+/*}*/
+/*.add-group-form .edit-area .item .data {*/
+/*width:370px;*/
+/*}*/
+.group-edit-modal {
+    display:none;
+}
+.group-edit-modal .button-group button {
+    float:right;
+    margin-left:8px;
+}
+.group-edit-modal form {
+    margin:0;
+}
+.group-item {
+    border:1px solid #ccc;
+    border-radius:5px;
+    margin:0 0 8px 0;
+}
+.group-item .group-title {
+    height:18px;
+    padding:4px 4px;
+    background-color:#efefef;
+}
+.group-item .group-body {
+    border-top:1px solid #ccc;
+    padding:6px 4px;
+    display:none;
+}
+.group-item-unfold .group-body {
+    display:block;
+}
+.group-title h5 {
+    float:left;
+}
+.group-title .op {
+    float:right;
+    height:18px;
+}
+.group-title .op .action {
+    float:left;
+    margin-right:4px;
+}
+.group-title .group-name:link,
+.group-title .group-name:visited {
+    color:#333;
+}
+.group-title .group-name:hover,
+.group-title .group-name:active {
+    text-decoration:none;
+    color:#666;
 }

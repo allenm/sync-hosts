@@ -5,7 +5,7 @@
 
 (function ( $ ) {
 
-    var hostManage = {
+    var workSpace = {
         init:function ( ) {
             this.initWorkingEditor();
             this.initSubmit();
@@ -20,11 +20,8 @@
             $('#submit-btn').on('click',function ( ev ) {
                 ev.preventDefault();
                 $('#working-edit-area').hostEditor('store');
-                var hosts = [],
-                    url = "/update-host";
-                $('#working-edit-area span.data').each(function ( index, item ) {
-                    hosts.push( $(this).text() );
-                });
+                var hosts = $('#working-edit-area').hostEditor('getHosts'),
+                    url = syncHost.config.api.updateHost;
 
                 $.ajax( url, {
                     type:"POST",
@@ -34,9 +31,9 @@
                     dataType:"json"
                 }).done(function ( data ) {
                     if( data.success === true ){
-                        self.toast("同步成功");
+                        self.toast("save & sync success");
                     }else{
-                        self.toast("同步失败","warning");
+                        self.toast("save & sync failure","warning");
                     }
                 });
 
@@ -54,11 +51,10 @@
                 $('#toast').fadeOut();
             },3000);
         }
+
     };
 
-
-    $( function ( ) {
-        hostManage.init();
-    });
+    syncHost.init( workSpace );
+    syncHost.workSpace = workSpace;
     
 })( jQuery );
