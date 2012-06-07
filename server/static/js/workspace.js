@@ -11,6 +11,8 @@
             this.initSubmit();
         },
 
+        serialNo:0,
+
         initWorkingEditor:function ( ) {
             $('#working-edit-area').hostEditor();
         },
@@ -26,7 +28,8 @@
                 $.ajax( url, {
                     type:"POST",
                     data: {
-                        host: hosts.join('\n')
+                        host: hosts.join('\n'),
+                        serialNo: self.serialNo++
                     },
                     dataType:"json"
                 }).done(function ( data ) {

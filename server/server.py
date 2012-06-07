@@ -11,6 +11,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.websocket
 import tornado.template
+import tornado.locale as locale
 import json
 import time
 
@@ -59,15 +60,17 @@ class updateHost( tornado.web.RequestHandler ):
 
     def post(self):
         host = self.get_argument("host", default=None )
+        serialNo = self.get_argument("serialNo",default = 0)
         if host is not None:
 
             hstore = models.HostsStore()
             hstore.updateWorkSpace( host )
 
             activeHosts = hstore.getActiveHosts()
+            hostMsg = { "hosts":activeHosts , "serialNo": serialNo, "action":"updateHost" }
 
             for c in clientList:
-                c.sendHost( activeHosts )
+                c.sendHost( hostMsg )
 
         result = {"success":True }
         self.write( json.dumps( result ) )
@@ -112,9 +115,11 @@ class delGroup( tornado.web.RequestHandler ):
             self.write( json.dumps( result ))
 
 
-class hostWSHandler( tornado.websocket.WebSocketHandler ):
-    def open( self ):
+class clientWSHandler( tornado.websocket.WebSocketHandler ):
+    def open( self,key ):
+        print key
         print "Websocket opened"
+        global clientList
         clientList.append( self )
 
     def sendHost(self, hosts):
@@ -130,7 +135,7 @@ class hostWSHandler( tornado.websocket.WebSocketHandler ):
 
 application = tornado.web.Application([
         (r"/", mainHandler),
-        (r"/host", hostWSHandler ),
+        (r"/client/(.*)", clientWSHandler ),
         (r"/update-host", updateHost ),
         (r"/edit-group", editGroup ),
         (r"/del-group", delGroup ),

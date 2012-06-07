@@ -10,6 +10,7 @@ import websocket
 import thread
 import time
 import json
+import ConfigParser
 
 abspath = os.path.dirname(__file__)
 sys.path.append( abspath + os.sep +"libs" )
@@ -17,10 +18,13 @@ os.chdir( abspath )
 
 import writehosts as wh
 
+ws = None
+
 def init():
-    config = getConfig()
+    global ws
     websocket.enableTrace( True )
-    ws = websocket.WebSocketApp("ws://"+ config["server"] +"/host",
+    print "ws://"+ getConfig("server") +"/client/"+ getConfig("key")
+    ws = websocket.WebSocketApp("ws://"+ getConfig("server") +"/client/"+ getConfig("key"),
             on_message = on_message,
             on_error = on_error,
             on_close = on_close)
@@ -29,12 +33,14 @@ def init():
 
 
 def on_open( ws ):
-    print "open"
+    print "### websocket open ###"
 
 def on_message( ws, message ):
-    print message
     hosts = json.loads( message )
-    writeHost( hosts )
+    print hosts
+    if( hosts.get("action",None) == "updateHost" ):
+        writeHost( hosts.get("hosts",[]) )
+        ws.send(json.dumps({ "success":True, "serialNo":hosts.get("serialNo",0) }))
 
 
 def on_error( ws, error ):
@@ -48,11 +54,14 @@ def on_close( ws ):
 def writeHost( hosts ):
     wh.writeHost( hosts )
 
-def getConfig():
-    c = open('config.json').read()
-    config = json.loads( c )
-    return config
-
+def getConfig( op ):
+    try:
+        config = ConfigParser.ConfigParser()
+        config.read('config.conf')
+        return config.get('main', op )
+    except:
+        print "config file error , %s not exist" % op
+        return ""
 
 if __name__ == "__main__":
     init()

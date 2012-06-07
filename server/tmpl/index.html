@@ -25,8 +25,10 @@
                             </div>
                             <div class="group-body">
                                 <ul>
+                                    {% if group[2] %}
                                     {% for item in group[2].split("\n") %}
                                     <li>{{item}}</li>
+                                    {% end %}
                                     {% end %}
                                 </ul>
                             </div>
@@ -49,7 +51,7 @@
                             <div class="edit-area">
                                 <div class="stored">
                                 </div>
-                                <textarea type="text" class="host-input"></textarea>
+                                <textarea type="text" placeholder="write your host here" class="host-input"></textarea>
                             </div>
                          </div>
                          <div class="modal-footer">
@@ -73,12 +75,20 @@
                             {% end %}
                         {% end %}
                     </div>
-                    <textarea type="text" class="host-input"></textarea>
+                    <textarea placeholder="write your hosts here" type="text" class="host-input"></textarea>
                 </div>
                 <div class="status clearfix">
                     <div class="toast" id="toast"></div>
                     <button id="submit-btn" type="submit" class="btn btn-large btn-primary submit-btn">Save &amp; Sync</button>
                 </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="thanks-to">
+                <p>Powered by <a href="http://www.tornadoweb.org/" title="tornado" target="_blank">tornado</a>
+                <a href="http://twitter.github.com/bootstrap/" title="bootstrap" target="_blank">bootstrap</a>
+                <a href="http://mustache.github.com/" title="mustache" target="_blank">mustache</a></p>
+                <p>Icons from <a href="http://glyphicons.com/" target="_blank">Glyphicons Free</a>, licensed under <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0.</a></p>
             </div>
         </div>
         {% for js in jsList %}

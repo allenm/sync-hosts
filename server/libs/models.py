@@ -48,7 +48,6 @@ class HostsStore :
             elif x.startswith( groupFlag ):
                 offset = x.find("|")
                 if offset is not -1:
-                    print x
                     groupId = x[ len(groupFlag): offset ]
                     activeHost += self.getGroupCont( groupId ).split('\n')
                 else:
@@ -85,7 +84,7 @@ class HostsStore :
         u"""获取分组hosts"""
         self.cursor.execute("SELECT hosts FROM groups WHERE id=?",(groupId,))
         result = self.cursor.fetchone()
-        if result:
+        if result and result[0]:
             return result[0]
         else:
             return ""
