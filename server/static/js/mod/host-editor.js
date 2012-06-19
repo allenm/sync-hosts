@@ -137,7 +137,16 @@
                     $this.addClass('unactive-item');
                     $this.find('span.data').text( '#'+$this.find('span.data').text() );
                 }
-            });
+            }).on('dblclick','div.item',function ( ev ) {
+                var target = ev.target,
+                    $this = $(this);
+                if( !$(target).hasClass('delete') ){
+                    var text = $this.find('span.data').text();
+                    $this.remove();
+                    var textArea = node.find('textarea.host-input');
+                    textArea.val( jQuery.trim(text+ '\n' + textArea.val()) );
+                }
+            });;
         }
 
 

@@ -164,6 +164,7 @@ class webWSHandler( tornado.websocket.WebSocketHandler ):
 class clientWSHandler( tornado.websocket.WebSocketHandler ):
     def open( self,key ):
         print key
+        self.key = key
         print "Websocket opened"
         global clientList
         clientList.append( self )
@@ -181,11 +182,11 @@ class clientWSHandler( tornado.websocket.WebSocketHandler ):
 
 application = tornado.web.Application([
         (r"/", mainHandler),
-        (r"/client/(.*)", clientWSHandler ),
-        (r"/webwshandler", webWSHandler ),
-        (r"/update-host", updateHost ),
-        (r"/edit-group", editGroup ),
-        (r"/del-group", delGroup ),
+        (r"/client/(.*)", clientWSHandler ), ## 客户端长连接
+        (r"/webwshandler", webWSHandler ), ## web 端长连接
+        (r"/update-host", updateHost ), ## 更新 host
+        (r"/edit-group", editGroup ),  ## 编辑分组
+        (r"/del-group", delGroup ),   ## 删除分组
     ],debug=True, cookie_secret="61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=",
     template_path = abspath+os.sep+'tmpl',
     static_path = abspath+ os.sep + 'static')
