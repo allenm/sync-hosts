@@ -35,8 +35,9 @@ class mainHandler( tornado.web.RequestHandler ):
         jsList.append("http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js")
         jsList.append( self.static_url( 'js/global.js' ) )
         jsList.append( self.static_url( 'js/mod/host-editor.js' ) )
+        jsList.append( self.static_url( 'js/mod/connect.js' ) )
         jsList.append( self.static_url( 'js/mod/mustache.js' ) )
-        jsList.append( self.static_url( 'js/mod/modal.js' ) )
+        jsList.append( self.static_url( 'js/mod/modal-widget.js' ) )
         jsList.append( self.static_url( 'js/workspace.js' ) )
         jsList.append( self.static_url( 'js/group.js' ) )
 
@@ -114,6 +115,51 @@ class delGroup( tornado.web.RequestHandler ):
             result = { "success":True }
             self.write( json.dumps( result ))
 
+class webWSHandler( tornado.websocket.WebSocketHandler ):
+
+    def open( self ):
+        pass
+
+    def sendMsg( self, msg ,channel="main"):
+        package = { "channel":channel, "data": msg }
+        self.write_message( json.dumps( package ) )
+
+    def on_message( self, message ):
+        msg = json.loads( message )
+        data = msg.get("data",None)
+        channel = msg.get("channel",None)
+
+        if data is None:
+            print "*** data is none !!!"
+            return
+        if channel is None:
+            print "*** channel is None !!!"
+
+        print channel
+        handle = getattr( self, channel, None )
+        if handle:
+            result = handle( data )
+            self.sendMsg(result, channel)
+
+    def updateHost( self, data ):
+        print data
+        host = data.get("host", None )
+        if host is not None:
+
+            hstore = models.HostsStore()
+            hstore.updateWorkSpace( host )
+            self.send2Client( )
+
+        return {"success":True }
+    
+    def send2Client(self):
+        hstore = models.HostsStore()
+        activeHosts = hstore.getActiveHosts()
+        hostMsg = { "hosts":activeHosts , "serialNo": 0, "action":"updateHost" }
+
+        for c in clientList:
+            c.sendHost( hostMsg )
+
 
 class clientWSHandler( tornado.websocket.WebSocketHandler ):
     def open( self,key ):
@@ -126,7 +172,7 @@ class clientWSHandler( tornado.websocket.WebSocketHandler ):
         self.write_message( json.dumps( hosts ) )
 
     def on_message(self, message):
-        print message ;
+        pass
 
     def on_close( self ):
         print "Websocket closed"
@@ -136,6 +182,7 @@ class clientWSHandler( tornado.websocket.WebSocketHandler ):
 application = tornado.web.Application([
         (r"/", mainHandler),
         (r"/client/(.*)", clientWSHandler ),
+        (r"/webwshandler", webWSHandler ),
         (r"/update-host", updateHost ),
         (r"/edit-group", editGroup ),
         (r"/del-group", delGroup ),

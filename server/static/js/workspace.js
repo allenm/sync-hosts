@@ -5,16 +5,33 @@
 
 (function ( $ ) {
 
+    var PubSub = syncHost.PubSub;
+
     var workSpace = {
+
+        PubSub:null,
+
         init:function ( ) {
             this.initWorkingEditor();
+            this.initPubSub();
             this.initSubmit();
         },
 
-        serialNo:0,
-
         initWorkingEditor:function ( ) {
             $('#working-edit-area').hostEditor();
+        },
+
+        initPubSub:function ( ) {
+            this.PubSub = new PubSub('updateHost',$.proxy( this.onMsg, this ));
+        },
+
+        onMsg:function ( data ) {
+            var self = this;
+            if( data.success === true ){
+                self.toast("save & sync success");
+            }else{
+                self.toast("save & sync failure","warning");
+            }
         },
 
         initSubmit:function ( ) {
@@ -22,26 +39,10 @@
             $('#submit-btn').on('click',function ( ev ) {
                 ev.preventDefault();
                 $('#working-edit-area').hostEditor('store');
-                var hosts = $('#working-edit-area').hostEditor('getHosts'),
-                    url = syncHost.config.api.updateHost;
+                var hosts = $('#working-edit-area').hostEditor('getHosts');
+                self.PubSub.send({ host:hosts.join('\n')});
+            })
 
-                $.ajax( url, {
-                    type:"POST",
-                    data: {
-                        host: hosts.join('\n'),
-                        serialNo: self.serialNo++
-                    },
-                    dataType:"json"
-                }).done(function ( data ) {
-                    if( data.success === true ){
-                        self.toast("save & sync success");
-                    }else{
-                        self.toast("save & sync failure","warning");
-                    }
-                });
-
-
-            });
         },
 
         addGroup:function ( groupId, groupName ) {

@@ -13,7 +13,8 @@ syncHost.config = {
         "updateHost":"/update-host",
         "editGroup":"/edit-group",
         "delGroup":"/del-group"
-    }
+    },
+    server:"localhost:8888"
 };
 
 syncHost.init = function ( o ) {
